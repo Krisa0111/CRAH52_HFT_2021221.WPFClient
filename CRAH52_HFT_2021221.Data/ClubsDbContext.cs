@@ -15,6 +15,7 @@ namespace CRAH52_HFT_2021221.Data
         public virtual DbSet<Events> Events { get; set; }
         public ClubsDbContext()
         {
+            
             this.Database.EnsureCreated();
 
         }
@@ -34,6 +35,7 @@ namespace CRAH52_HFT_2021221.Data
                 .WithOne(y => y.Clubs)
                 .HasForeignKey<Events>(x => x.ClubID);
             });
+            modelBuilder.Entity<Events>().Property(eventsfk => eventsfk.ClubID).IsRequired(false);
                 
 
 
@@ -46,7 +48,7 @@ namespace CRAH52_HFT_2021221.Data
             Clubs Cat = new Clubs { ClubID = 5, ClubName = "Cat Budapest", BaseTicketPrice = 2000, Capacity = 300, President = "unkown", ShortDesc = "Techno music, nice ligh equipment" };
             Clubs Mousoleum = new Clubs { ClubID = 6, ClubName = "Club Mousoleum", BaseTicketPrice = 2000, Capacity = 300, President = "unkown", ShortDesc = "Little place in Vác" };
             
-            Events LLJuniorNight = new Events { EventID = 1, ClubID = Peaches.ClubID, Date = "2021 09 13", EventName = "LL Junior in Peaches", EventShortDesc = "LL Junior performed hungarian music" };
+            Events LLJuniorNight = new Events { EventID = 1, Date = "2021 09 13", EventName = "LL Junior in Peaches", EventShortDesc = "LL Junior performed hungarian music" };
             Events Neccparty = new Events { EventID = 2, ClubID = Akvarium.ClubID, Date = "2021 09 24", EventName = "Neccparty by Spanis wax", EventShortDesc = "All kinds of gas music" };
             Events Krubi = new Events { EventID = 3, ClubID = Heaven.ClubID, Date = "2021 08 10", EventName = "Krúbi in Heaven", EventShortDesc = "Krúbi performed in Club Heaven" };
             Events Coronita = new Events { EventID = 4, ClubID = Cat.ClubID, Date = "2021 10 05", EventName = "Coronita", EventShortDesc = "Techno music from 5 am till 13 pm" };
