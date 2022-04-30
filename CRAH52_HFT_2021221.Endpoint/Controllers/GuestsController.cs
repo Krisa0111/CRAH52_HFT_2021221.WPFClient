@@ -34,7 +34,7 @@ namespace CRAH52_HFT_2021221.Endpoint.Controllers
         {
             logic.Create(guest);
         }
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] Guests guest)
         {
             logic.Update(guest);

@@ -35,7 +35,7 @@ namespace CRAH52_HFT_2021221.Endpoint.Controllers
         {
             logic.Create(events);
         }
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] Events events)
         {
             logic.Update(events);
