@@ -17,6 +17,7 @@ namespace CRAH52_HFT_2021221.Repository
         }
         public void Create(Clubs club)
         {
+            club.ClubID = 0;
             Context.Clubs.Add(club);
             Context.SaveChanges();
         }
