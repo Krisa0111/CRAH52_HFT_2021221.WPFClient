@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,10 @@ namespace CRAH52_HFT_2021221.Endpoint
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRAH52_HFT_2021221.Endpoint", Version = "v1" });
+            });
             services.AddControllers();
 
             services.AddTransient<IClubsLogic, ClubsLogic>();
@@ -41,6 +46,8 @@ namespace CRAH52_HFT_2021221.Endpoint
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CRAH52_HFT_2021221.Endpoint v1"));
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
