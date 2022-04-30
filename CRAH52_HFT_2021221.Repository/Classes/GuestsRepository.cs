@@ -17,6 +17,7 @@ namespace CRAH52_HFT_2021221.Repository
         }
         public void Create(Guests guest)
         {
+            guest.GuestID = 0;
             Context.Guests.Add(guest);
             Context.SaveChanges();
         }

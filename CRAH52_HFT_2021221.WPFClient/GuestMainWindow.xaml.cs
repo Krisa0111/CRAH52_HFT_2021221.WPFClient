@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CRAH52_HFT_2021221.WPFClient
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GuestMainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GuestMainWindow : Window
     {
-        public MainWindow()
+        public GuestMainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -17,6 +17,8 @@ namespace CRAH52_HFT_2021221.Repository
         }
         public void Create(Events events)
         {
+            
+            events.EventID = 0;
             Context.Events.Add(events);
             Context.SaveChanges();
         }
