@@ -1,6 +1,8 @@
-﻿using CRAH52_HFT_2021221.Logic;
+﻿using CRAH52_HFT_2021221.Endpoint.Services;
+using CRAH52_HFT_2021221.Logic;
 using CRAH52_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +17,11 @@ namespace CRAH52_HFT_2021221.Endpoint.Controllers
     public class EventsController : ControllerBase
     {
         IEventsLogic logic;
-        public EventsController(IEventsLogic logic)
+        IHubContext<SignalRHub> hub;
+        public EventsController(IEventsLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
         // GET: api/<EventsController>
         [HttpGet]
@@ -34,16 +38,20 @@ namespace CRAH52_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Events events)
         {
             logic.Create(events);
+            this.hub.Clients.All.SendAsync("EventCreated", events);
         }
         [HttpPut]
         public void Put([FromBody] Events events)
         {
             logic.Update(events);
+            this.hub.Clients.All.SendAsync("EventUpdated", events);
         }
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var eventToDelete = this.logic.ReadOne(id);
             logic.Delete(id);
+            this.hub.Clients.All.SendAsync("EventDeleted", eventToDelete);
         }
     }
 }

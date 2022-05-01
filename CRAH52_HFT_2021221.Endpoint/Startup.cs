@@ -1,4 +1,5 @@
 using CRAH52_HFT_2021221.Data;
+using CRAH52_HFT_2021221.Endpoint.Services;
 using CRAH52_HFT_2021221.Logic;
 using CRAH52_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -39,7 +40,7 @@ namespace CRAH52_HFT_2021221.Endpoint
             services.AddTransient<IGuestsRepository, GuestsRepository>();
 
             services.AddTransient<ClubsDbContext, ClubsDbContext>();
-
+            services.AddSignalR();
 
         }
 
@@ -62,6 +63,7 @@ namespace CRAH52_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
