@@ -42,7 +42,7 @@ namespace CRAH52_HFT_2021221.WPFClient
         public ICommand UpdateGuestCommand { get; set; }
         public GuestMainWindowViewModel()
         {
-            Guests = new RestCollection<Guests>("http://localhost:30907/", "guests");
+            Guests = new RestCollection<Guests>("http://localhost:30907/", "guests","hub");
             CreateGuestCommand = new RelayCommand(() =>
             {
                 Guests.Add(new Guests()

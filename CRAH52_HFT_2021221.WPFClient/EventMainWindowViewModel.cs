@@ -77,7 +77,7 @@ namespace CRAH52_HFT_2021221.WPFClient
         public ICommand UpdateEventCommand { get; set; }
         public EventMainWindowViewModel()
         {
-            Events = new RestCollection<Events>("http://localhost:30907/", "events");
+            Events = new RestCollection<Events>("http://localhost:30907/", "events","hub");
             CreateEventCommand = new RelayCommand(() =>
             {
                 Events.Add(new Events()

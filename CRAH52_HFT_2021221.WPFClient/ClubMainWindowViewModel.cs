@@ -44,7 +44,7 @@ namespace CRAH52_HFT_2021221.WPFClient
         public ICommand UpdateClubCommand { get; set; }
         public ClubMainWindowViewModel()
         {
-            Clubs = new RestCollection<Clubs>("http://localhost:30907/","clubs");
+            Clubs = new RestCollection<Clubs>("http://localhost:30907/","clubs","hub");
             CreateClubCommand = new RelayCommand(() =>
             {
                 Clubs.Add(new Clubs()
