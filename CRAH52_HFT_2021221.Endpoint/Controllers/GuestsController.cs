@@ -37,20 +37,20 @@ namespace CRAH52_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Guests guest)
         {
             logic.Create(guest);
-            this.hub.Clients.All.SendAsync("GuestCreated", guest);
+            this.hub.Clients.All.SendAsync("GuestsCreated", guest);
         }
         [HttpPut]
         public void Put([FromBody] Guests guest)
         {
             logic.Update(guest);
-            this.hub.Clients.All.SendAsync("GuestUpdated", guest);
+            this.hub.Clients.All.SendAsync("GuestsUpdated", guest);
         }
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             var guestToDelete = this.logic.ReadOne(id);
             logic.Delete(id);
-            this.hub.Clients.All.SendAsync("GuestDeleted", guestToDelete);
+            this.hub.Clients.All.SendAsync("GuestsDeleted", guestToDelete);
         }
     }
 }

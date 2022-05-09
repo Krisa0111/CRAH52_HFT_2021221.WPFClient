@@ -38,20 +38,20 @@ namespace CRAH52_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Events events)
         {
             logic.Create(events);
-            this.hub.Clients.All.SendAsync("EventCreated", events);
+            this.hub.Clients.All.SendAsync("EventsCreated", events);
         }
         [HttpPut]
         public void Put([FromBody] Events events)
         {
             logic.Update(events);
-            this.hub.Clients.All.SendAsync("EventUpdated", events);
+            this.hub.Clients.All.SendAsync("EventsUpdated", events);
         }
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             var eventToDelete = this.logic.ReadOne(id);
             logic.Delete(id);
-            this.hub.Clients.All.SendAsync("EventDeleted", eventToDelete);
+            this.hub.Clients.All.SendAsync("EventsDeleted", eventToDelete);
         }
     }
 }
