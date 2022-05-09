@@ -62,7 +62,12 @@ namespace CRAH52_HFT_2021221.WPFClient
             DeleteGuestCommand = new RelayCommand(() =>
             {
                 Guests.Delete(SelectedGuest.GuestID);
-            });
+            },
+            ()=>
+            {
+                return SelectedGuest != null;
+            }
+            );
             SelectedGuest = new Guests();
         }
     }
